@@ -1,0 +1,44 @@
+Permissions: Because log files are typically owned by the root user, you will need sudo to run your script.
+
+First Run: Execute the script from your terminal:
+
+sudo python3 log_analyzer.py
+
+After it runs, a new file security_report.txt will be created. You can view its contents with:
+
+cat security_report.txt
+
+Testing with Fake Logs (Important!):
+You can manually add lines to your log files to test if the script detects them.
+
+Test Failed SSH:
+
+echo "Sep 12 11:35:00 test-server sshd[1111]: Failed password for user admin from 123.123.123.123 port 22" | sudo tee -a /var/log/auth.log
+
+Test Sudo Command:
+
+echo "Sep 12 11:36:00 test-server sudo: user1 : TTY=pts/0 ; PWD=/home/user1 ; USER=root ; COMMAND=/usr/bin/apt update" | sudo tee -a /var/log/auth.log
+
+Now, run sudo python3 log_analyzer.py again and check the report.
+
+Step 5: Automating with Cron
+To make the analyzer truly automated, schedule it to run daily using cron.
+
+Open the Crontab:
+
+sudo crontab -e
+
+Add the Cron Job: This example runs the script daily at 7:00 AM.
+
+# Run the security log analyzer every day at 7 AM
+0 7 * * * /usr/bin/python3 /path/to/your/project/security_log_analyzer/log_analyzer.py
+
+Important: Replace /path/to/your/project/ with the actual, absolute path.
+
+Possible Enhancements:
+
+Analyze More Logs: Extend the script to parse other logs, like /var/log/ufw.log (firewall).
+
+IP Geolocation: Use an API to look up the geographical location of suspicious IP addresses.
+
+Threshold-Based Alerting: Only generate an alert if the number of failed logins from an IP exceeds a certain threshold.
