@@ -165,7 +165,7 @@ Save and exit. The script will now run automatically.
 
 ---
 
-## Possible Enhancements:
+## 🔮Possible Enhancements:
 
 - **Analyze More Logs:** Extend the script to parse other logs, like `/var/log/ufw.log` (firewall).
 
