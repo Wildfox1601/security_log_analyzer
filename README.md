@@ -7,18 +7,17 @@ This tool is designed for **system administrators, cybersecurity enthusiasts, an
 ---
 
 ## 🔑 Key Features
-✔ **Failed SSH Login Detection:** Identifies and aggregates multiple failed login attempts from the same IP address.  
+- **Failed SSH Login Detection:** Identifies and aggregates multiple failed login attempts from the same IP address.  
 
-✔ **Sudo Command Monitoring:** Logs all commands executed with sudo for an audit trail.  
+- **Sudo Command Monitoring:** Logs all commands executed with sudo for an audit trail.  
 
-✔ **Web Attack Pattern Matching:** Scans web server access logs (e.g., Apache) for common attack signatures like SQL Injection, XSS, and <br>
-&emsp;&ensp; Directory Traversal.  
+- **Web Attack Pattern Matching:** Scans web server access logs (e.g., Apache) for common attack signatures like SQL Injection, XSS, and Directory Traversal.  
 
-✔ **Automated Reporting:** Generates a clean, readable `.txt` report summarizing all findings.  
+- **Automated Reporting:** Generates a clean, readable `.txt` report summarizing all findings.  
 
-✔ **Email Notifications:** Sends the security report directly to your inbox for immediate review.  
+- **Email Notifications:** Sends the security report directly to your inbox for immediate review.  
 
-✔ **Easy Automation:** Designed to be run automatically on a schedule using `cron`.  
+- **Easy Automation:** Designed to be run automatically on a schedule using `cron`.  
 
 ---
 
