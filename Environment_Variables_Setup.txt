@@ -1,0 +1,62 @@
+Setup Environment Variables TEMPORARY,
+
+Configuring Your Environment
+
+Before running the script, you must set the required environment variables in your terminal. This tells the script how to log in to your email account.
+
+Here is an example for a Gmail account:
+
+export EMAIL_HOST='smtp.gmail.com'
+export EMAIL_PORT='465'
+export EMAIL_USER='your-email@gmail.com'
+export EMAIL_PASSWORD='your-google-app-password'
+export EMAIL_RECEIVER='destination-email@example.com'
+
+EMAIL_HOST and EMAIL_PORT: These are the server settings for your email provider (e.g., Gmail, Outlook). The example uses standard settings for Gmail with SSL.
+
+EMAIL_USER: Your full email address.
+
+EMAIL_PASSWORD: Important! If you use 2-Factor Authentication (2FA) with services like Gmail (which is highly recommended), you cannot use your regular password. You must generate an "App Password".
+
+Go to your Google Account settings -> Security.
+
+Under "Signing in to Google," select "App passwords."
+
+Generate a new password for this application and use that 16-character password here.
+
+EMAIL_RECEIVER: The email address where the report should be sent.
+
+4. Running the Script with Email Enabled
+
+Once the environment variables are set in your terminal, run the script as before:
+
+sudo -E python3 log_analyzer.py
+
+The script will now generate the .txt report file and send its contents via email.
+
+5. Automating with Cron (with Environment Variables) - PERMANENT SETUP
+
+Cron jobs run in a minimal shell and don't automatically load the variables from your terminal session. To make this work, you can create a simple wrapper script.
+
+Create a new file named run_analyzer.sh.
+
+Add the following content, filling in your details:
+
+#!/bin/bash
+export EMAIL_HOST='smtp.gmail.com'
+export EMAIL_PORT='465'
+export EMAIL_USER='your-email@gmail.com'
+export EMAIL_PASSWORD='your-google-app-password'
+export EMAIL_RECEIVER='destination-email@example.com'
+
+# Navigate to the script directory and execute it
+# Make sure to use the correct, full path to your project
+cd /path/to/your/project/security_log_analyzer/ && /usr/bin/python3 log_analyzer.py
+
+Make the script executable: chmod +x run_analyzer.sh
+
+Update your crontab (sudo crontab -e) to run this wrapper script instead:
+
+0 7 * * * /path/to/your/project/security_log_analyzer/run_analyzer.sh
+
+This ensures the Python script has access to the necessary credentials when run automatically.
